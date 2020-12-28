@@ -1,0 +1,17 @@
+.container {
+  background-color: #f3f2f2cc;
+  display: grid;
+  grid-template-rows: 2fr 20fr 1fr;
+  height: 100vh;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.footer {
+  padding-top: 0.2em;
+  padding-bottom: 1em;
+}
+
+.footerText {
+  text-align: center;
+}
