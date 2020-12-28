@@ -20,7 +20,8 @@ const Layout = ({ children, title }: Props) => (
       <footer className={styles.footer}>
         <hr />
         <div className={styles.footerText}>
-          Built by <a href="https://mathieularose.com">Mathieu Larose</a>
+          Built by <a href="https://mathieularose.com">Mathieu Larose</a> |{" "}
+          <a href="https://github.com/larose/pretty-printer">About</a>
         </div>
       </footer>
     </div>
