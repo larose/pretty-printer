@@ -20,8 +20,12 @@ export function Base64PrettyPrinter({ value }: { value: string }) {
 
   try {
     parsedValue = parse(value);
-  } catch (error) {
-    parsedValue = error;
+  } catch (error: unknown) {
+    if (!(error instanceof Error)) {
+      throw error;
+    }
+
+    parsedValue = `${error.name}: ${error.message}`;
   }
 
   return <TextAreaViewer value={parsedValue}></TextAreaViewer>;

@@ -11,7 +11,7 @@ export function Source({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   useEffect(() => {
     if (textareaRef.current) {
-      textareaRef.current!.focus();
+      textareaRef.current.focus();
     }
   }, []);
 
