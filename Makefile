@@ -11,6 +11,10 @@ build:
 dev:
 	npx next dev
 
+.PHONY: fix
+fix:
+	npx npx eslint . --ext js,ts,tsx --fix
+
 .PHONY: install
 install:
 	npm ci
@@ -34,6 +38,12 @@ start:
 	npx next start
 
 .PHONY: test
-test:
-	npx tsc
+test: test.eslint test.types
 
+.PHONY: test.eslint
+test.eslint:
+	npx npx eslint . --ext js,ts,tsx
+
+.PHONY: test.types
+test.types:
+	npx tsc

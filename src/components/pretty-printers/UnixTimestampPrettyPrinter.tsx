@@ -59,7 +59,11 @@ export function UnixTimestampPrettyPrinter({ value }: { value: string }) {
   try {
     parsedValue = parse(value);
   } catch (error) {
-    parsedValue = error;
+    if (!(error instanceof Error)) {
+      throw error;
+    }
+
+    parsedValue = `${error.name}: ${error.message}`;
   }
 
   return <TextAreaViewer value={parsedValue}></TextAreaViewer>;

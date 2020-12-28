@@ -1,6 +1,6 @@
 import { TextAreaViewer } from "../text-area-viewer/TextAreaViewer";
 
-const START_WITH_CURLY_BRACE_OR_SQUARE_BRACKET = /^\s*[\[\{}]/;
+const START_WITH_CURLY_BRACE_OR_SQUARE_BRACKET = /^\s*[[{}]/;
 
 export function isJSON(value: string) {
   if (!value.match(START_WITH_CURLY_BRACE_OR_SQUARE_BRACKET)) {
@@ -24,8 +24,12 @@ export function JSONPrettyPrinter({ value }: { value: string }) {
 
   try {
     parsedValue = parse(value);
-  } catch (error) {
-    parsedValue = error;
+  } catch (error: unknown) {
+    if (!(error instanceof Error)) {
+      throw error;
+    }
+
+    parsedValue = `${error.name}: ${error.message}`;
   }
 
   return <TextAreaViewer value={parsedValue}></TextAreaViewer>;
